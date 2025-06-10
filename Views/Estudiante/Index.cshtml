@@ -1,0 +1,79 @@
+﻿@model IEnumerable<MoEstudiante>
+@{
+    ViewData["Title"] = "Lista de Estudiantes";
+}
+
+<div class="d-flex align-items-center">
+    <a asp-action="Index" class="btn btn-secondary btn-sm me-3 px-2 py-1">
+        <i class="fa-solid fa-arrow-left-long"></i>
+    </a>
+    <h2 class="mb-1">Estudiantes</h2>
+</div>
+
+<div class="col-12 col-xl-10 mx-auto mt-4">
+    <div class="d-flex">
+        <div class="col-5 col-md-3 me-auto">
+            <div class="input-group">
+                <label class="input-group-text" for="rowsSelector">Ver:</label>
+                <select id="ddlCatalogos" class="form-select">
+                    <option value="5">5</option>
+                    <option value="10" selected>10</option>
+                    <option value="25">25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-12 col-md-6 mb-2 mb-md-0">
+            <div class="col-12 col-md-11 m-auto">
+                <div class="input-group">
+                    <input id="txtBuscar" type="text" class="form-control" placeholder="Escriba el nombre de un elemento" aria-label="Buscar catálogo" />
+                    @* <button id="btnBuscar" class="btn btn-outline-secondary" type="button" data-bs-toggle="tooltip" data-bs-container="button" data-bs-placement="top" data-bs-title="Buscar">Buscar</button> *@
+                </div>
+            </div>
+        </div>
+        <button id="btnAgregar" class="btn btn-primary btn-md me-1" onclick="fnMostrarAgregarCatalogo()"
+                data-bs-toggle="tooltip" title="Agregar">
+            @* <span class="me-2">Nuevo</span> *@
+            <i class="fa-solid fa-circle-plus"></i>
+        </button>
+    </div>
+    <table id="tblEstudiante" class="table table-sm table-striped table-bordered w-100">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Fecha de Nacimiento</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var estudiante in Model)
+            {
+                <tr>
+                    <td>@estudiante.Id</td>
+                    <td>@estudiante.Nombre</td>
+                    <td>@estudiante.Apellido</td>
+                    <td>@estudiante.FechaNacimiento.ToShortDateString()</td>
+                    <td>
+                        <button id="btnEditar" class="btn btn-sm btn-outline-primary fs-6 px-1 py-0 border-0 rounded-2"
+                                data-bs-toggle="tooltip" title="Editar" onclick="fnMostrarEditarCatalogo()">
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
+                        <button id="btnEditar" class="btn btn-sm btn-outline-secondary fs-6 px-1 py-0 border-0 rounded-2"
+                                data-bs-toggle="tooltip" title="Editar" onclick="fnMostrarEditarCatalogo()">
+                            <i class="fa-solid fa-pencil"></i>
+                        </button>
+                        <button id="btnEditar" class="btn btn-sm btn-outline-danger fs-6 px-1 py-0 border-0 rounded-2"
+                                data-bs-toggle="tooltip" title="Editar" onclick="fnMostrarEditarCatalogo()">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<script src="~/js/Scripts/jsEstudiante.js"></script>

@@ -1,0 +1,44 @@
+﻿@model IEnumerable<MoPersonal>
+@{
+    ViewData["Title"] = "Lista de Personal";
+}
+
+<div class="d-flex">
+    <a asp-action="Index">
+        <i class="fas fa-users"></i>
+    </a>
+    <h1>Estudiantes</h1>
+</div>
+
+<div class="col-12 col-md-8 col-lg-10  m-auto">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Id</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellido</th>
+                <th scope="col">Fecha de Nacimiento</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var estudiante in Model)
+            {
+                <tr>
+                    <td>@estudiante.Id</td>
+                    <td>@estudiante.Nombre</td>
+                    <td>@estudiante.Apellido</td>
+                    <td>@estudiante.FechaNacimiento.ToShortDateString()</td>
+                    <td>
+                        <a asp-action="Editar" asp-route-id="@estudiante.Id" class="btn btn-primary">
+                            Editar
+                        </a>
+                        <a asp-action="Eliminar" asp-route-id="@estudiante.Id" class="btn btn-danger">
+                            Eliminar
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
