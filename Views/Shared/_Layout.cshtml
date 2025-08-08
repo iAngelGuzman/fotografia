@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Fotografia</title>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Fotografia.styles.css" asp-append-version="true" />
+
+    <!-- DataTables -->
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css" asp-append-version="true">
+</head>
+<body class="d-flex flex-column">
+    @if (ViewData["bHeader"] == null)
+    {
+        <header>
+            <div class="header" bis_skin_checked="1" style="text-align:right">
+                <div class="header-right-1" style="background-color: #0d47a1;" bis_skin_checked="1">
+                    <span class="spanUV" style="margin-right:12px; color:white">Universidad Veracruzana</span>
+                </div>
+            </div>
+
+            <nav class="navbar navbar-expand" style="background-color: #303f9f;">
+                <div class="container-fluid">
+                    @if (ViewData["bCustomMenu"] != null)
+                    {
+                        <a id="btnMenu" class="d-inline d-md-none btn btn-outline-primary text-white border-0 bg-transparent ms-1 me-3 p-0 my-auto" onclick="abrirMenu()">
+                            <i class="fa-solid fa-bars d-flex fs-1 justify-content-center align-items-center"></i>
+                        </a>
+                    }
+                    <a class="navbar-brand text-white" style="box-shadow: none; text-decoration: none;" asp-action="Index" asp-controller="Inicio">
+                        Fotografia
+                    </a>
+
+                    <div class="collapse navbar-collapse me-0 ms-auto flex-grow-0" id="navbar">
+                        <ul class="navbar-nav">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-white d-flex align-items-center" id="listadesplegable" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <div class="d-none d-md-inline text-truncate" id="divNombre">GUZMAN GUZMAN ZAVALETA JOSE ANGEL</div>
+                                    <i class="fa-solid fa-circle-user fa-2x ms-2 text-white" style="color: rgba(204, 197, 197, 0.95);"></i>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-end mt-2" data-bs-auto-close="false">
+                                    <li class="d-inline d-md-none">
+                                        <a class="dropdown-item-text text-decoration-none text-black">
+                                            GUZMAN GUZMAN ZAVALETA JOSE ANGEL
+                                        </a>
+                                        <hr class="my-2">
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" asp-action="Index" asp-controller="Login">
+                                            <i class="fa fa-sign-out"></i> Cerrar Sesión
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+    }
+    <main class="overflow-y-auto" style="flex: 1;">
+        @RenderBody()
+    </main>
+    <footer class="py-1 text-white text-center" style="background-color: #0d47a1; font-size: 12.8px; z-index: 20">
+        © @DateTime.Now.Year Universidad Veracruzana
+    </footer>
+
+    <!-- Toast global -->
+    <div id="divMensajes" class="toast-container position-fixed bottom-0 end-0 p-3 d-flex flex-column normal">
+        <!-- Sucess -->
+        <div id="successToast" class="toast border-0 rounded-3" style="background-color: #43a047; box-shadow: 0 .1rem .6rem rgb(0, 0, 0, .4);" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex align-items-center text-white" style="padding: .2rem 0;">
+                <i class="fa-solid fa-circle-check fs-4" style="padding: 0 .6rem; padding-left: .8rem;"></i>
+                <span class="fs-6">Catálogo actualizado correctamente</span>
+                <i class="fa-solid fa-xmark ms-auto fs-4 btn text-white p-2 me-2" style="text-shadow: 0 .1rem .1rem rgb(0, 0, 0, .2)" data-bs-dismiss="toast"></i>
+            </div>
+        </div>
+        <!-- Info -->
+        <div id="infoToast" class="toast border-0 rounded-3" style="background-color: #1e88e5; box-shadow: 0 .1rem .6rem rgb(0, 0, 0, .4);" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex align-items-center text-white" style="padding: .2rem 0;">
+                <i class="fa-solid fa-circle-exclamation fs-4" style="padding: 0 .6rem; padding-left: .8rem;"></i>
+                <span class="fs-6">Alerta de información</span>
+                <i class="fa-solid fa-xmark ms-auto fs-4 btn text-white p-2 me-2" style="text-shadow: 0 .1rem .1rem rgb(0, 0, 0, .2)" data-bs-dismiss="toast"></i>
+            </div>
+        </div>
+        <!-- Warning -->
+        <div id="warningToast" class="toast border-0 rounded-3" style="background-color: #fb8c00; box-shadow: 0 .1rem .6rem rgb(0, 0, 0, .4);" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex align-items-center text-white" style="padding: .2rem 0;">
+                <i class="fa-solid fa-exclamation fs-4 ms-2" style="padding: 0 .6rem; padding-left: .8rem;"></i>
+                <span class="fs-6 ms-1">Alerta de advertencia</span>
+                <i class="fa-solid fa-xmark ms-auto fs-4 btn text-white p-2 me-2" style="text-shadow: 0 .1rem .1rem rgb(0, 0, 0, .2)" data-bs-dismiss="toast"></i>
+            </div>
+        </div>
+        <!-- Error -->
+        <div id="errorToast" class="toast border-0 rounded-3" style="background-color: #d50000; box-shadow: 0 .1rem .6rem rgb(0, 0, 0, .4);" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="d-flex align-items-center text-white" style="padding: .2rem 0;">
+                <i class="fa-solid fa-triangle-exclamation fs-4" style="padding: 0 .6rem; padding-left: .8rem;"></i>
+                <span class="fs-6">Alerta de error</span>
+                <i class="fa-solid fa-xmark ms-auto fs-4 btn text-white p-2 me-2" style="text-shadow: 0 .1rem .1rem rgb(0, 0, 0, .2)" data-bs-dismiss="toast"></i>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

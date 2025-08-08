@@ -1,0 +1,52 @@
+﻿@model Fotografia.ViewModels.VmIniciarSesion
+@{
+    Layout = "_LayoutLogin";
+}
+
+<link rel="stylesheet" href="~/css/Estilos/cssLogin.css" asp-append-version="true">
+
+<div class="d-flex">
+    <div class="col-6 login-image">
+        <img class="object-fit-cover w-50 h-100 position-fixed" style="z-index: -1;" src="@Url.Content("~/images/xp.jpg")" alt="Imagen login SiSProI" />
+    </div>
+
+    <div class="col-12 col-md-6 mb-3">
+        <div class="text-end">
+            <a class="btn text-white fs-6 px-4 py-1 rounded-0 pleca" style="background-color: #0D47A1;" href="https://www.uv.mx">Universidad Veracruzana</a>
+        </div>
+
+        <br /><br /><br /><br /><br /><br />
+
+        <div class="text-center">
+            <h1 class="display-5 px-3" style="color: #036; font-weight: 400;">Fotografia</h1>
+            <h2 class="display-6 px-3 text-secondary fw-medium mb-1">Inicio de sesión</h2>
+
+            <div class="fs-5 py-3 px-3" role="alert" style="color: #c85305">
+                @if (!ViewData.ModelState.IsValid && ViewData.ModelState.Keys.Any())
+                {
+                    @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                    {
+                        <div>@Html.Raw(error.ErrorMessage)</div>
+                    }
+                }
+            </div>
+
+            <form class="d-flex justify-content-center px-3" method="post" asp-action="Index">
+                <div class="d-flex flex-column gap-3 col-12 col-xs-12 col-sm-10 col-md-11 col-lg-11 col-xl-10 col-xxl-6">
+                    <input asp-for="SUsuario" class="form-control" type="text" id="txtUsuario" name="SUsuario" maxlength="50" placeholder="Usuario" autocomplete="username" />
+
+                    <div class="input-group">
+                        <input asp-for="SContra" class="form-control" type="password" id="txtContra" name="SContra" maxlength="20" placeholder="Contraseña" autocomplete="current-password" />
+                        <button class="btn btn-outline-secondary bg-transparent text-muted" type="button" onclick="fnAlternarContrasena()">
+                            <i id="contrasenaIcono" class="fa-solid fa-eye-slash"></i>
+                        </button>
+                    </div>
+
+                    <button class="btn btn-primary btn-lg w-100" type="submit">Iniciar sesión</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/Scripts/jsLogin.js" asp-append-version="true"></script>

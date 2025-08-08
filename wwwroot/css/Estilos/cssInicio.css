@@ -1,0 +1,6 @@
+#btnEstudiante, #btnPersonal {
+    transition: all .2s ease-in-out;
+}
+#btnEstudiante:hover, #btnPersonal:hover {
+    transform: scale(1.025);
+}
