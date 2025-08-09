@@ -1,21 +1,21 @@
 ﻿@model IEnumerable<MoFoto>
 @{
-    ViewData["Title"] = "Lista de Estudiantes";
+    ViewData["Title"] = "Estudiantes";
 }
 <link rel="stylesheet" href="~/css/Estilos/cssEstudiante.css" asp-append-version="true" />
 
-<div class="col-12 col-xl-10 mx-auto">
+<div class="container-fluid col-12 col-md-9 col-xl-6 mx-auto">
     <div class="d-flex align-items-center mt-4">
         <a asp-controller="Inicio" asp-action="Index" class="btn btn-secondary btn-sm me-3 px-2 py-1">
             <i class="fa-solid fa-arrow-left-long"></i>
         </a>
         <h2 class="mb-1">Estudiantes</h2>
     </div>
-    <div class="d-flex mt-4">
-        <div class="col-5 col-md-3 me-auto">
+    <div class="d-flex flex-wrap mt-4 gap-2">
+        <div class="col-4 col-md-3 order-1 order-md-0">
             <div class="input-group">
                 <label class="input-group-text" for="rowsSelector">Ver:</label>
-                <select id="ddlCatalogos" class="form-select">
+                <select id="ddlEstudiante" class="form-select">
                     <option value="5">5</option>
                     <option value="10" selected>10</option>
                     <option value="25">25</option>
@@ -24,30 +24,23 @@
                 </select>
             </div>
         </div>
-
-        <div class="col-12 col-md-6 mb-2 mb-md-0">
-            <div class="col-12 col-md-11 m-auto">
-                <div class="input-group">
-                    <input id="txtBuscarEstudiante" type="text" class="form-control" placeholder="Escriba el nombre de un elemento" aria-label="Buscar catálogo" />
-                    @* <button id="btnBuscar" class="btn btn-outline-secondary" type="button" data-bs-toggle="tooltip" data-bs-container="button" data-bs-placement="top" data-bs-title="Buscar">Buscar</button> *@
-                </div>
-            </div>
+        <div class="col-12 col-md-6 mx-auto order-0 order-md-1">
+            <input id="txtBuscarEstudiante" type="text" class="form-control col-10" placeholder="Escriba el nombre de un elemento" aria-label="Buscar catálogo" />
         </div>
-        <button id="btnAgregar" class="btn btn-primary btn-md me-1" onclick="fnMostrarAgregarImagen()"
-                data-bs-toggle="tooltip" title="Agregar">
-            @* <span class="me-2">Nuevo</span> *@
+        <button id="btnAgregar" class="btn btn-primary btn-md ms-auto order-2" onclick="fnMostrarAgregarImagen()" data-bs-toggle="tooltip" title="Agregar">
             <i class="fa-solid fa-circle-plus"></i>
+            <span class="ms-1">Nuevo</span>
         </button>
     </div>
     <div class="table-responsive mt-2">
-        <table id="tblEstudiante" class="table table-bordered text-center">
-            <thead>
+        <table id="tblEstudiante" class="table table-bordered table-striped text-center">
+            <thead class="text-center">
                 <tr>
-                    <th scope="col">Id</th>
-                    <th scope="col">Matricula</th>
-                    <th scope="col">Última modificación</th>
-                    <th scope="col">Responsable</th>
-                    <th scope="col">Acciones</th>
+                    <th class="text-center border-0" scope="col">Id</th>
+                    <th class="text-center border-0" scope="col">Matricula</th>
+                    <th class="text-center border-0" scope="col">Última modificación</th>
+                    <th class="text-center border-0" scope="col">Responsable</th>
+                    <th class="text-center border-0" scope="col">Acciones</th>
                 </tr>
             </thead>
             <tbody>
@@ -60,7 +53,7 @@
                         <td>@estudiante.SUsuario</td>
                         <td>
                             <button id="btnVer" class="btn btn-sm btn-outline-primary fs-6 px-1 py-0 border-0 rounded-2"
-                                    data-bs-toggle="tooltip" title="Ver" onclick="fnMostrarVerImagen()">
+                                    data-bs-toggle="tooltip" title="Ver" onclick="fnMostrarVerImagen('@estudiante.SMatricula', '@estudiante.SFoto')">
                                 <i class="fa-solid fa-eye"></i>
                             </button>
                             <button id="btnEditar" class="btn btn-sm btn-outline-secondary fs-6 px-1 py-0 border-0 rounded-2"
@@ -244,6 +237,27 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para visualizar la foto del estudiante -->
+<div class="modal fade" id="mdlVerFoto" tabindex="-1" aria-labelledby="hVerFoto" aria-hidden="true" data-bs-backdrop="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="hVerFoto">Fotografía del estudiante</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body text-center">
+                <img id="imgVerFoto" src="" alt="Foto del estudiante" class="img-fluid w-100 h-100 rounded border" />
+                <div class="mt-2">
+                    <span id="spMatriculaVerFoto" class="fw-bold"></span>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
             </div>
         </div>
     </div>

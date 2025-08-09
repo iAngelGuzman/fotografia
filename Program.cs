@@ -1,7 +1,12 @@
+using Fotografia.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddScoped<DaFoto>();
+
 
 var app = builder.Build();
 

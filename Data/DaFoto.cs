@@ -14,11 +14,24 @@ public class DaFoto
     public List<MoFoto> ObtenerFotos()
     {
         using var connection = new SqlConnection(_connection);
-        var parametros = new DynamicParameters();
-        var result = connection.Query<MoFoto>(
-            "PA_OBTENER_FOTOS",
-            commandType: CommandType.StoredProcedure
-        );
+        var sql = @"SELECT TOP 5
+                sID AS SId,
+                bFoto AS BFoto,
+                bFirma AS BFirma,
+                dFAlta AS DFAlta,
+                dFUltModif AS DFUltModif,
+                dFBaja AS DFBaja,
+                cIndActivo AS CIndActivo,
+                sUsuario AS SUsuario
+            FROM GGVESTUDI";
+        var result = connection.Query<MoFoto>(sql);
         return result.ToList();
+        //using var connection = new SqlConnection(_connection);
+        //var parametros = new DynamicParameters();
+        //var result = connection.Query<MoFoto>(
+        //    "PA_OBTENER_FOTOS",
+        //    commandType: CommandType.StoredProcedure
+        //);
+        //return result.ToList();
     }
 }

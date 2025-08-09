@@ -1,11 +1,12 @@
-wwwroot\css\site.css
+wwwroot\css\Estilos\cssEstudiante.css
+wwwroot\css\Estilos\cssInicio.css
 wwwroot\css\Estilos\cssLogin.css
-wwwroot\js\Scripts\jsEstudiante.js
+wwwroot\css\site.css
 wwwroot\favicon.ico
 wwwroot\images\Logueo_Egresados.jpg
 wwwroot\images\xp.jpg
 wwwroot\js\Scripts\jsAdmin.js
-wwwroot\css\Estilos\cssInicio.css
+wwwroot\js\Scripts\jsFotografia.js
 wwwroot\js\Scripts\jsLogin.js
 wwwroot\js\site.js
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
@@ -112,110 +113,109 @@ wwwroot\lib\jquery\dist\jquery.slim.js
 wwwroot\lib\jquery\dist\jquery.slim.min.js
 wwwroot\lib\jquery\dist\jquery.slim.min.map
 wwwroot\lib\jquery\LICENSE.txt
-wwwroot\css\Estilos\cssEstudiante.css
-wwwroot\js\Scripts\jsFotografia.js
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\css\Estilos\cssLogin.css
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\css\site.css
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\favicon.ico
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\js\Scripts\jsAdmin.js
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\css\Estilos\cssInicio.css
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\js\Scripts\jsLogin.js
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\js\site.js
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css.map
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css.map
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css.map
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css.map
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css.map
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css.map
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css.map
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css.map
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css.map
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css.map
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css.map
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap.css
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap.css.map
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css.map
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css.map
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js.map
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js.map
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js.map
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\bootstrap\dist\js\bootstrap.js
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\bootstrap\dist\js\bootstrap.js.map
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\datatables.net\datatables.min.js
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\font-awesome\css\all.css
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\font-awesome\css\all.min.css
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\font-awesome\css\brands.css
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\font-awesome\css\brands.min.css
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\font-awesome\css\fontawesome.css
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\font-awesome\css\fontawesome.min.css
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\font-awesome\css\regular.css
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\font-awesome\css\regular.min.css
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\font-awesome\css\solid.css
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\font-awesome\css\solid.min.css
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\font-awesome\css\svg-with-js.css
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\font-awesome\css\svg-with-js.min.css
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\font-awesome\css\v4-font-face.css
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\font-awesome\css\v4-font-face.min.css
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\font-awesome\css\v4-shims.css
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\font-awesome\css\v4-shims.min.css
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\font-awesome\css\v5-font-face.css
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\font-awesome\css\v5-font-face.min.css
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\font-awesome\js\all.js
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\font-awesome\js\all.min.js
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\font-awesome\js\brands.js
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\font-awesome\js\brands.min.js
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\font-awesome\js\conflict-detection.js
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\font-awesome\js\conflict-detection.min.js
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\font-awesome\js\fontawesome.js
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\font-awesome\js\fontawesome.min.js
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\font-awesome\js\regular.js
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\font-awesome\js\regular.min.js
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\font-awesome\js\solid.js
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\font-awesome\js\solid.min.js
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\font-awesome\js\v4-shims.js
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\font-awesome\js\v4-shims.min.js
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\font-awesome\sprites\brands.svg
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\font-awesome\sprites\regular.svg
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\font-awesome\sprites\solid.svg
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.js
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.min.js
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\jquery-validation\dist\additional-methods.js
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\jquery-validation\dist\additional-methods.min.js
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\jquery-validation\dist\jquery.validate.js
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\jquery-validation\dist\jquery.validate.min.js
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\jquery-validation\LICENSE.md
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\jquery\dist\jquery.js
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\jquery\dist\jquery.min.js
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\jquery\dist\jquery.min.map
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\jquery\dist\jquery.slim.js
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\jquery\dist\jquery.slim.min.js
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\jquery\dist\jquery.slim.min.map
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\lib\jquery\LICENSE.txt
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\js\Scripts\jsEstudiante.js
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\js\Scripts\jsFotografia.js
-C:\Users\UV\Desktop\Servicio\NET 9\Fotografia\wwwroot\css\Estilos\cssEstudiante.css
+wwwroot\js\Scripts\jsEstudiante.js
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\css\Estilos\cssEstudiante.css
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\css\Estilos\cssInicio.css
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\css\Estilos\cssLogin.css
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\css\site.css
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\favicon.ico
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\js\Scripts\jsAdmin.js
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\js\Scripts\jsFotografia.js
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\js\Scripts\jsLogin.js
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\js\site.js
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.min.css.map
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.css.map
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.rtl.min.css.map
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.css.map
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.min.css.map
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.css.map
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap-reboot.rtl.min.css.map
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.css.map
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.min.css.map
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.css.map
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap-utilities.rtl.min.css.map
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap.css
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap.css.map
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap.min.css.map
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.css.map
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\bootstrap\dist\css\bootstrap.rtl.min.css.map
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.js.map
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\bootstrap\dist\js\bootstrap.bundle.min.js.map
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.js.map
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\bootstrap\dist\js\bootstrap.esm.min.js.map
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\bootstrap\dist\js\bootstrap.js
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\bootstrap\dist\js\bootstrap.js.map
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\datatables.net\datatables.min.js
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\font-awesome\css\all.css
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\font-awesome\css\all.min.css
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\font-awesome\css\brands.css
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\font-awesome\css\brands.min.css
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\font-awesome\css\fontawesome.css
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\font-awesome\css\fontawesome.min.css
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\font-awesome\css\regular.css
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\font-awesome\css\regular.min.css
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\font-awesome\css\solid.css
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\font-awesome\css\solid.min.css
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\font-awesome\css\svg-with-js.css
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\font-awesome\css\svg-with-js.min.css
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\font-awesome\css\v4-font-face.css
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\font-awesome\css\v4-font-face.min.css
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\font-awesome\css\v4-shims.css
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\font-awesome\css\v4-shims.min.css
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\font-awesome\css\v5-font-face.css
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\font-awesome\css\v5-font-face.min.css
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\font-awesome\js\all.js
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\font-awesome\js\all.min.js
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\font-awesome\js\brands.js
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\font-awesome\js\brands.min.js
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\font-awesome\js\conflict-detection.js
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\font-awesome\js\conflict-detection.min.js
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\font-awesome\js\fontawesome.js
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\font-awesome\js\fontawesome.min.js
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\font-awesome\js\regular.js
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\font-awesome\js\regular.min.js
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\font-awesome\js\solid.js
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\font-awesome\js\solid.min.js
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\font-awesome\js\v4-shims.js
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\font-awesome\js\v4-shims.min.js
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\font-awesome\sprites\brands.svg
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\font-awesome\sprites\regular.svg
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\font-awesome\sprites\solid.svg
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.js
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\jquery-validation-unobtrusive\dist\jquery.validate.unobtrusive.min.js
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\jquery-validation\dist\additional-methods.js
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\jquery-validation\dist\additional-methods.min.js
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\jquery-validation\dist\jquery.validate.js
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\jquery-validation\dist\jquery.validate.min.js
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\jquery-validation\LICENSE.md
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\jquery\dist\jquery.js
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\jquery\dist\jquery.min.js
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\jquery\dist\jquery.min.map
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\jquery\dist\jquery.slim.js
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\jquery\dist\jquery.slim.min.js
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\jquery\dist\jquery.slim.min.map
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\lib\jquery\LICENSE.txt
+C:\Users\UV\Desktop\Servicio\NET 9\Github\fotografia\wwwroot\js\Scripts\jsEstudiante.js

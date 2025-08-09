@@ -8,31 +8,30 @@ namespace Fotografia.Controllers
     {
         public IActionResult Index()
         {
-            var personales = new List<MoPersonal>
+            var personal = new List<MoFoto>
             {
-                new MoPersonal
+                new MoFoto
                 {
-                    Id = 1,
-                    Nombre = "Juan",
-                    Apellido = "Perez",
-                    FechaNacimiento = new DateTime(1990, 1, 1)
+                    SId = "test",
+                    SMatricula = "Juan",
+                    DFAlta = new DateTime(1990, 1, 1),
+                    DFUltModif = new DateTime(1990, 1, 1),
+                    DFBaja = new DateTime(1990, 1, 1),
+                    CIndActivo = "C",
+                    SUsuario = "Juan"
                 },
-                new MoPersonal
+                new MoFoto
                 {
-                    Id = 2,
-                    Nombre = "Pedro",
-                    Apellido = "Perez",
-                    FechaNacimiento = new DateTime(1990, 2, 1)
+                    SId = "test",
+                    SMatricula = "Pedro",
+                    DFAlta = new DateTime(1990, 1, 1),
+                    DFUltModif = new DateTime(1990, 1, 1),
+                    DFBaja = new DateTime(1990, 1, 1),
+                    CIndActivo = "C",
+                    SUsuario = "Juan"
                 },
-                new MoPersonal
-                {
-                    Id = 3,
-                    Nombre = "Luis",
-                    Apellido = "Perez",
-                    FechaNacimiento = new DateTime(1990, 3, 1)
-                }
             };
-            return View(personales);
+            return View(personal);
         }
     }
 }

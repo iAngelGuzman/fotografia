@@ -1,27 +1,22 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Fotografia.Models;
 using System;
+using Fotografia.Data;
 
 namespace Fotografia.Controllers
 {
     public class EstudianteController : Controller
     {
+        private readonly DaFoto? _daFoto;
+
+        public EstudianteController(DaFoto daFoto)
+        {
+            _daFoto = daFoto ?? throw new ArgumentNullException(nameof(daFoto));
+        }
+
         public IActionResult Index()
         {
-            var estudiantes = new List<MoFoto>
-            {
-                new MoFoto
-                {
-                    SId = "test",
-                    SMatricula = "Juan",
-                    BFoto = "Perez",
-                    DFAlta = new DateTime(1990, 1, 1),
-                    DFUltModif = new DateTime(1990, 1, 1),
-                    DFBaja = new DateTime(1990, 1, 1),
-                    CIndActivo = "C",
-                    SUsuario = "Juan"
-                }
-            };
+            var estudiantes = _daFoto?.ObtenerFotos() ?? new();
             return View(estudiantes);
         }
     }

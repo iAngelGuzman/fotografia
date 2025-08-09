@@ -36,3 +36,16 @@
 function fnMostrarAgregarImagen() {
     $('#mdlAgregar').modal('show');
 }
+
+function fnMostrarVerImagen(matricula, fotoBase64) {
+    if (!matricula) {
+        matricula = 'Sin matrícula';
+    }
+    // Asigna la matrícula y la imagen
+    document.getElementById('spMatriculaVerFoto').textContent = matricula;
+    document.getElementById('imgVerFoto').src = fotoBase64;
+
+    // Muestra el modal
+    var modal = new bootstrap.Modal(document.getElementById('mdlVerFoto'));
+    modal.show();
+}
