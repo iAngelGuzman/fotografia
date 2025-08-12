@@ -1,17 +1,3 @@
-function fnSubirFoto() {
-    document.getElementById('txtImagenes').click();
-}
-
-async function fnSubirFotoSeleccionada(txtImagenes) {
-    const files = txtImagenes.files;
-    if (!files.length) return;
-    for (let i = 0; i < files.length; i++) {
-        const res = await fnVerificarDuplicado(files[i]);
-        if (res === 'cancelar') break;
-    }
-    txtImagenes.value = '';
-}
-
 // --- Variables globales ---
 let currentImageIndex = -1;
 let cerrarModalPendiente = false;
@@ -68,6 +54,85 @@ async function fnSubirFotoSeleccionada(txtImagenes) {
     }
     txtImagenes.value = '';
 }
+
+async function fnGuardarFotosEnServidor() {
+    const buttons = fnObtenerImagenes();
+    if (buttons.length === 0) {
+        alert('No hay fotos para guardar.');
+        return;
+    }
+
+    const token = document.querySelector('#formAgregarFotos input[name="__RequestVerificationToken"]').value;
+
+    const promesas = buttons.map(btn => {
+        const img = btn.querySelector('img');
+        if (!img) return Promise.resolve();
+
+        const base64 = img.src.split(',')[1];
+        const matricula = fnQuitarExtension(img.alt);
+
+        const payload = {
+            SMatricula: matricula,
+            BFotoBase64: base64
+        };
+
+        return fetch('/Estudiante/InsertarDesdeModal', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'RequestVerificationToken': token
+            },
+            body: JSON.stringify(payload)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (!data.success) {
+                    throw new Error(`Error al guardar la foto ${matricula}: ${data.message}`);
+                }
+            });
+    });
+
+    try {
+        await Promise.all(promesas);
+        alert('Fotos guardadas correctamente.');
+        const modal = bootstrap.Modal.getInstance(document.getElementById('mdlAgregar'));
+        modal.hide();
+        location.reload();
+    } catch (err) {
+        alert(err.message);
+    }
+}
+
+// --- Actualizar foto ---
+function fnActualizarFoto() {
+    const matricula = $('#txtMatriculaEditar').val();
+    // Si necesitas enviar la imagen, puedes obtenerla desde la fuente base64 actual en imgEditarPrincipal
+    const fotoBase64 = $('#imgEditarPrincipal').attr('src').split(',')[1];
+
+    $.ajax({
+        url: '/Estudiante/ActualizarFoto',  // Acción en el controlador que procesa la edición
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({
+            NId: idFotoEditar,
+            SMatricula: matricula,
+            BFotoBase64: fotoBase64
+        }),
+        success: function (response) {
+            if (response.success) {
+                alert('Foto editada correctamente');
+                $('#mdlEditar').modal('hide');
+                location.reload();
+            } else {
+                alert('Error: ' + response.message);
+            }
+        },
+        error: function () {
+            alert('Error en la petición al servidor.');
+        }
+    });
+}
+
 
 // --- Imagen principal ---
 function fnActualizarIndex(btn) {

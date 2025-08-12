@@ -4,14 +4,14 @@ namespace Fotografia.Models
 {
     public class MoFoto
     {
-        public string? SId { get; set; }
+        public int NId { get; set; }
         public string? SMatricula { get; set; }
         public byte[]? BFoto { get; set; }
         public DateTime? DFAlta { get; set; }
         public DateTime? DFUltModif { get; set; }
         public DateTime? DFBaja { get; set; }
         public string? CIndActivo { get; set; }
-        public string? SUsuario { get; set; }
+        public string? SUsrResp { get; set; }
 
         public string? SFoto
         {

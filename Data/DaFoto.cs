@@ -14,24 +14,55 @@ public class DaFoto
     public List<MoFoto> ObtenerFotos()
     {
         using var connection = new SqlConnection(_connection);
-        var sql = @"SELECT TOP 5
-                sID AS SId,
-                bFoto AS BFoto,
-                bFirma AS BFirma,
-                dFAlta AS DFAlta,
-                dFUltModif AS DFUltModif,
-                dFBaja AS DFBaja,
-                cIndActivo AS CIndActivo,
-                sUsuario AS SUsuario
-            FROM GGVESTUDI";
-        var result = connection.Query<MoFoto>(sql);
+        var result = connection.Query<MoFoto>(
+            "PAS_ESTUDI",
+            commandType: CommandType.StoredProcedure
+        );
         return result.ToList();
-        //using var connection = new SqlConnection(_connection);
-        //var parametros = new DynamicParameters();
-        //var result = connection.Query<MoFoto>(
-        //    "PA_OBTENER_FOTOS",
-        //    commandType: CommandType.StoredProcedure
-        //);
-        //return result.ToList();
+    }
+
+    public async Task InsertarFoto(MoFoto foto)
+    {
+        using var connection = new SqlConnection(_connection);
+        await connection.ExecuteAsync(
+            "PAI_ESTUDI",
+            new
+            {
+                foto.SMatricula,
+                foto.BFoto,
+                foto.SUsrResp
+            },
+            commandType: CommandType.StoredProcedure
+        );
+    }
+
+    public void ActualizarFoto(MoFoto foto)
+    {
+        using var connection = new SqlConnection(_connection);
+        connection.Execute(
+            "PAA_ESTUDI",
+            new
+            {
+                foto.NId,
+                foto.SMatricula,
+                foto.BFoto,
+                foto.SUsrResp
+            },
+            commandType: CommandType.StoredProcedure
+        );
+    }
+
+    public void EliminarFoto(string nId, string usuario)
+    {
+        using var connection = new SqlConnection(_connection);
+        connection.Execute(
+            "PAE_ESTUDI",
+            new
+            {
+                nID = nId,
+                sUsrResp = usuario
+            },
+            commandType: CommandType.StoredProcedure
+        );
     }
 }

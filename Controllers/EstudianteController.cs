@@ -2,12 +2,13 @@
 using Fotografia.Models;
 using System;
 using Fotografia.Data;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Fotografia.Controllers
 {
     public class EstudianteController : Controller
     {
-        private readonly DaFoto? _daFoto;
+        private readonly DaFoto _daFoto;
 
         public EstudianteController(DaFoto daFoto)
         {
@@ -16,8 +17,70 @@ namespace Fotografia.Controllers
 
         public IActionResult Index()
         {
-            var estudiantes = _daFoto?.ObtenerFotos() ?? new();
+            var estudiantes = _daFoto.ObtenerFotos() ?? new List<MoFoto>();
             return View(estudiantes);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> InsertarDesdeModal([FromBody] InsertFotoRequest request)
+        {
+            if (string.IsNullOrEmpty(request.SMatricula) || string.IsNullOrEmpty(request.BFotoBase64))
+            {
+                return Json(new { success = false, message = "Datos incompletos." });
+            }
+
+            try
+            {
+                byte[] fotoBytes = Convert.FromBase64String(request.BFotoBase64);
+
+                var nuevaFoto = new MoFoto
+                {
+                    SMatricula = request.SMatricula,
+                    BFoto = fotoBytes,
+                    DFAlta = DateTime.Now,
+                    SUsrResp = User.Identity?.Name ?? "Anónimo"
+                };
+
+                if (_daFoto == null)
+                {
+                    return Json(new { success = false, message = "El servicio de datos no está disponible." });
+                }
+
+                await _daFoto.InsertarFoto(nuevaFoto);
+
+                return Json(new { success = true });
+            }
+            catch (Exception ex)
+            {
+                // Aquí podrías loggear el error
+                return Json(new { success = false, message = ex.Message });
+            }
+        }
+
+        public class InsertFotoRequest
+        {
+            public string? SMatricula { get; set; }
+            public string? BFotoBase64 { get; set; }
+        }
+
+        [HttpPost]
+        public IActionResult ActualizarFoto([FromBody] MoFoto foto)
+        {
+            if (foto == null || foto.NId == 0)
+            {
+                return BadRequest(new { success = false, message = "Datos inválidos" });
+            }
+
+            try
+            {
+                _daFoto.ActualizarFoto(foto);
+                return Ok(new { success = true });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { success = false, message = ex.Message });
+            }
+        }
+
     }
 }

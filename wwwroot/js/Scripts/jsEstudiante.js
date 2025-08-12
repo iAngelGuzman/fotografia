@@ -37,6 +37,16 @@ function fnMostrarAgregarImagen() {
     $('#mdlAgregar').modal('show');
 }
 
+let idFotoEditar = null;
+
+function fnMostrarEditarImagen(foto) {
+    console.log(foto.SFoto)
+    $('#imgEditarPrincipal').attr('src', foto.SFoto);
+    $('#txtMatriculaEditar').val(foto.SMatricula);
+    idFotoEditar = foto.NId;
+    $('#mdlEditar').modal('show');
+}
+
 function fnMostrarVerImagen(matricula, fotoBase64) {
     if (!matricula) {
         matricula = 'Sin matrícula';
