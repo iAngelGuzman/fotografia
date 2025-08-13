@@ -7,36 +7,36 @@ function fnQuitarExtension(nombre) {
     return nombre.replace(/\.[^/.]+$/, "");
 }
 
-function fnObtenerImagenes() {
+function fnObtenerFotografias() {
     return Array.from(document.querySelectorAll('#divFotos .btnImg'));
 }
 
 function fnSeleccionarImgDefault() {
-    const lsImagenes = fnObtenerImagenes();
-    if (lsImagenes.length === 0) {
+    const liFotografias = fnObtenerFotografias();
+    if (liFotografias.length === 0) {
         nIndexImagenActual = -1;
         document.getElementById('imgPrincipal').src = "";
         document.getElementById('spFotoPrincipal').textContent = "MATRICULA";
         return;
     }
-    if (nIndexImagenActual === -1 || nIndexImagenActual >= lsImagenes.length) {
-        fnMostrarPrincipal(lsImagenes[0]);
+    if (nIndexImagenActual === -1 || nIndexImagenActual >= liFotografias.length) {
+        fnMostrarPrincipal(liFotografias[0]);
     }
 }
 
 function fnActualizarInfo() {
     const divContenedorFotos = document.getElementById('divContenedorFotos');
-    const modalFooter = document.getElementById('mdlAgregar').querySelector('.modal-footer');
+    const mdlFooter = document.getElementById('mdlAgregar').querySelector('.modal-footer');
     const divInfo = document.getElementById('divInfo');
-    const lsImagenes = fnObtenerImagenes();
-    if (lsImagenes.length === 0) {
+    const liFotografias = fnObtenerFotografias();
+    if (liFotografias.length === 0) {
         divInfo.classList.remove('d-none');
         divContenedorFotos.classList.add('d-none');
-        modalFooter.classList.add('d-none');
+        mdlFooter.classList.add('d-none');
     } else {
         divInfo.classList.add('d-none');
         divContenedorFotos.classList.remove('d-none');
-        modalFooter.classList.remove('d-none');
+        mdlFooter.classList.remove('d-none');
     }
 }
 
@@ -56,38 +56,38 @@ async function fnSubirFotoSeleccionada(txtImagenes) {
 }
 
 async function fnGuardarFotos() {
-    const lsBotones = fnObtenerImagenes();
-    if (lsBotones.length === 0) {
+    const liBotones = fnObtenerFotografias();
+    if (liBotones.length === 0) {
         alert('No hay fotos para guardar.');
         return;
     }
 
-    const token = document.querySelector('#formAgregarFotos input[name="__RequestVerificationToken"]').value;
+    const tokenAgregarFotos = document.querySelector('#formAgregarFotos input[name="__RequestVerificationToken"]').value;
 
-    const promesas = lsBotones.map(btn => {
+    const promesas = liBotones.map(btn => {
         const img = btn.querySelector('img');
         if (!img) return Promise.resolve();
 
-        const base64 = img.src.split(',')[1];
-        const matricula = fnQuitarExtension(img.alt);
+        const bFoto = img.src.split(',')[1];
+        const sMatricula = fnQuitarExtension(img.alt);
 
         const payload = {
-            SMatricula: matricula,
-            BFotoBase64: base64
+            SMatricula: sMatricula,
+            BFotoBase64: bFoto
         };
 
         return fetch('/Estudiante/AgregarFoto', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'RequestVerificationToken': token
+                'RequestVerificationToken': tokenAgregarFotos
             },
             body: JSON.stringify(payload)
         })
             .then(res => res.json())
             .then(data => {
                 if (!data.success) {
-                    throw new Error(`Error al guardar la foto ${matricula}: ${data.message}`);
+                    throw new Error(`Error al guardar la foto ${sMatricula}: ${data.message}`);
                 }
             });
     });
@@ -95,8 +95,8 @@ async function fnGuardarFotos() {
     try {
         await Promise.all(promesas);
         alert('Fotos guardadas correctamente.');
-        const modal = bootstrap.Modal.getInstance(document.getElementById('mdlAgregar'));
-        modal.hide();
+        const mdlAgregar = bootstrap.Modal.getInstance(document.getElementById('mdlAgregar'));
+        mdlAgregar.hide();
         location.reload();
     } catch (err) {
         alert(err.message);
@@ -136,7 +136,7 @@ function fnActualizarFoto() {
 
 // --- Imagen principal ---
 function fnActualizarIndex(btn) {
-    nIndexImagenActual = fnObtenerImagenes().indexOf(btn);
+    nIndexImagenActual = fnObtenerFotografias().indexOf(btn);
 }
 
 function fnMostrarPrincipal(btn) {
@@ -145,7 +145,7 @@ function fnMostrarPrincipal(btn) {
     document.getElementById('imgPrincipal').src = img.src;
     document.getElementById('spFotoPrincipal').textContent = fnQuitarExtension(img.alt || 'Foto seleccionada');
     fnActualizarIndex(btn);
-    fnObtenerImagenes().forEach(b => b.classList.remove('active'));
+    fnObtenerFotografias().forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
 }
 
@@ -160,12 +160,12 @@ function fnBtnEliminarImg(btn) {
     btnClose.innerHTML = '<i class="fa-solid fa-xmark"></i>';
     btnClose.addEventListener('click', function (e) {
         e.stopPropagation();
-        const lsImagenes = fnObtenerImagenes();
-        const idx = lsImagenes.indexOf(btn);
+        const liFotografias = fnObtenerFotografias();
+        const idx = liFotografias.indexOf(btn);
         const wasActive = btn.classList.contains('active');
         btn.remove();
         fnActualizarInfo();
-        const newButtons = fnObtenerImagenes();
+        const newButtons = fnObtenerFotografias();
         if (wasActive) {
             if (newButtons.length === 0) {
                 fnSeleccionarImgDefault();
@@ -287,9 +287,9 @@ function fnPreguntarDuplicado(nombre, anteriorSrc, nuevaSrc) {
 // --- Navegación con teclado ---
 function fnObtenerImagenesPorFila() {
     const divFotos = document.getElementById('divFotos');
-    const lsImagenes = fnObtenerImagenes();
-    if (lsImagenes.length < 2) return 1;
-    const firstBtn = lsImagenes[0];
+    const liFotografias = fnObtenerFotografias();
+    if (liFotografias.length < 2) return 1;
+    const firstBtn = liFotografias[0];
     const btnWidth = firstBtn.offsetWidth + parseInt(getComputedStyle(firstBtn).marginRight || 0);
     const divWidth = divFotos.offsetWidth;
     return Math.max(1, Math.floor(divWidth / btnWidth));
@@ -298,23 +298,23 @@ function fnObtenerImagenesPorFila() {
 document.addEventListener('keydown', function (e) {
     const modal = document.getElementById('mdlAgregar');
     if (!modal.classList.contains('show')) return;
-    const lsImagenes = fnObtenerImagenes();
-    if (!lsImagenes.length) return;
+    const liFotografias = fnObtenerFotografias();
+    if (!liFotografias.length) return;
     let imagesPerRow = fnObtenerImagenesPorFila();
 
-    if (e.key === 'ArrowRight' && nIndexImagenActual < lsImagenes.length - 1) nIndexImagenActual++;
+    if (e.key === 'ArrowRight' && nIndexImagenActual < liFotografias.length - 1) nIndexImagenActual++;
     else if (e.key === 'ArrowLeft' && nIndexImagenActual > 0) nIndexImagenActual--;
-    else if (e.key === 'ArrowDown' && nIndexImagenActual + imagesPerRow < lsImagenes.length) nIndexImagenActual += imagesPerRow;
+    else if (e.key === 'ArrowDown' && nIndexImagenActual + imagesPerRow < liFotografias.length) nIndexImagenActual += imagesPerRow;
     else if (e.key === 'ArrowUp' && nIndexImagenActual - imagesPerRow >= 0) nIndexImagenActual -= imagesPerRow;
     else return;
-    lsImagenes[nIndexImagenActual].focus();
-    fnMostrarPrincipal(lsImagenes[nIndexImagenActual]);
+    liFotografias[nIndexImagenActual].focus();
+    fnMostrarPrincipal(liFotografias[nIndexImagenActual]);
 });
 
 // --- Modal de confirmación de cierre ---
 document.getElementById('mdlAgregar').addEventListener('hide.bs.modal', function (e) {
-    const lsImagenes = fnObtenerImagenes();
-    if (lsImagenes.length > 0 && !bCerrarModalPendiente) {
+    const liFotografias = fnObtenerFotografias();
+    if (liFotografias.length > 0 && !bCerrarModalPendiente) {
         e.preventDefault();
         const confirmModal = new bootstrap.Modal(document.getElementById('mdlConfirmarCerrar'));
         confirmModal.show();
@@ -329,7 +329,7 @@ document.getElementById('mdlAgregar').addEventListener('hide.bs.modal', function
 });
 
 document.getElementById('mdlAgregar').addEventListener('hidden.bs.modal', function () {
-    fnObtenerImagenes().forEach(btn => btn.remove());
+    fnObtenerFotografias().forEach(btn => btn.remove());
     nIndexImagenActual = -1;
     document.getElementById('imgPrincipal').src = "https://picsum.photos/id/10/500/300";
     document.getElementById('spFotoPrincipal').textContent = "MATRICULA";
@@ -399,9 +399,9 @@ document.addEventListener('DOMContentLoaded', function () {
         function fnGuardarNombre() {
             const nuevoNombre = fnQuitarExtension(input.value.trim()) || 'MATRICULA';
             // Validar duplicado (ignorando la imagen principal actual)
-            const lsImagenes = fnObtenerImagenes();
+            const liFotografias = fnObtenerFotografias();
             const nombreConExtension = nuevoNombre + '.jpg';
-            const existe = lsImagenes.some((btn, idx) => {
+            const existe = liFotografias.some((btn, idx) => {
                 if (idx === nIndexImagenActual) return false;
                 const imgMini = btn.querySelector('img');
                 return imgMini && imgMini.alt === nombreConExtension;
@@ -420,8 +420,8 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('imgPrincipal').alt = nuevoNombre;
 
             // Actualiza el alt de la miniatura activa
-            if (nIndexImagenActual >= 0 && lsImagenes[nIndexImagenActual]) {
-                const imgMini = lsImagenes[nIndexImagenActual].querySelector('img');
+            if (nIndexImagenActual >= 0 && liFotografias[nIndexImagenActual]) {
+                const imgMini = [nIndexImagenActual].querySelector('img');
                 if (imgMini) imgMini.alt = nombreConExtension;
             }
 
