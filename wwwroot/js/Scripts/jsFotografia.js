@@ -76,7 +76,7 @@ async function fnGuardarFotosEnServidor() {
             BFotoBase64: base64
         };
 
-        return fetch('/Estudiante/InsertarDesdeModal', {
+        return fetch('/Estudiante/AgregarFoto', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
