@@ -91,7 +91,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div id="divInfo" class="text-center" style="cursor: pointer;" onclick="fnSubirFotoAContenedor()">
+                    <div id="divInfo" class="text-center" style="cursor: pointer;" onclick="fnSubirFotosAContenedor()">
                         <div class="m-auto">
                             <div class="card m-auto text-dark border-dark opacity-50"
                                  style="width: 160px; height: 160px;">
@@ -140,9 +140,14 @@
                             <!-- boton para subir foto -->
                             <div id="divSubirFoto" class="d-flex align-items-center"
                                  style="max-width: 60px; max-height: 60px; min-width: 60px; min-height: 60px; padding: .7rem;">
-                                <button class="btn btn-primary p-0 w-100 h-100 rounded-circle"
+                                <!-- <button class="btn btn-primary p-0 w-100 h-100 rounded-circle"
                                         onclick="fnSubirFotos()">
                                     <i class="fa-solid fa-plus fs-5"></i>
+                                </button> -->
+                                <button type="button" class="btn btn-primary p-0 w-100 h-100 rounded-circle" id="btnAbrir">
+                                    <label for="txtImagenes" class="m-0 w-100 h-100 d-flex align-items-center justify-content-center">
+                                        <i class="fa-solid fa-plus fs-5"></i>
+                                    </label>
                                 </button>
                             </div>
                         </div>
