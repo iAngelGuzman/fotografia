@@ -22,40 +22,21 @@ namespace Fotografia.Controllers
             return View(lsEstudiantes);
         }
 
-        [HttpPost]
+        /// <summary>
+        /// AgregarFoto: Agrega una fotografía a la base de datos a partir de un objeto ViewModel />.
+        /// </summary>
+        /// <param name="vmAgregarFoto">ViewModel-Objeto que contiene la matrícula y la imagen en formato Base64</param>
+        /// <param name="sUsuario">  Nombre del usuario responsable de la acción. Si es nulo o vacío, se asignará "Anónimo"</param>
+        /// <returns></returns>
+        [HttpPost("Agregar")]
         public async Task<IActionResult> AgregarFoto([FromBody] VmAgregarFoto vmAgregarFoto)
         {
-            if (string.IsNullOrEmpty(vmAgregarFoto.SMatricula) || string.IsNullOrEmpty(vmAgregarFoto.BFotoBase64))
-            {
-                return Json(new { success = false, message = "Datos incompletos." });
-            }
-
-            try
-            {
-                byte[] bFoto = Convert.FromBase64String(vmAgregarFoto.BFotoBase64);
-
-                var moFoto = new MoFoto
-                {
-                    SMatricula = vmAgregarFoto.SMatricula,
-                    BFoto = bFoto,
-                    DFAlta = DateTime.Now,
-                    SUsrResp = User.Identity?.Name ?? "Anónimo"
-                };
-
-                if (_daFoto == null)
-                {
-                    return Json(new { success = false, message = "El servicio de datos no está disponible." });
-                }
-
-                await _daFoto.InsertarFoto(moFoto);
-
-                return Json(new { success = true });
-            }
-            catch (Exception ex)
-            {
-                // Aquí podrías loggear el error
-                return Json(new { success = false, message = ex.Message });
-            }
+            var resultado = await _clsFoto.AgregarFoto(vmAgregarFoto, User.Identity?.Name);
+        
+            if (!resultado.Success)
+                return BadRequest(new { success = false, message = resultado.Message });
+        
+            return Ok(new { success = true, message = resultado.Message });
         }
 
         [HttpPost]
