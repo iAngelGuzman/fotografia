@@ -91,7 +91,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div id="divInfo" class="text-center" style="cursor: pointer;" onclick="fnSubirFoto()">
+                    <div id="divInfo" class="text-center" style="cursor: pointer;" onclick="fnSubirFotoAContenedor()">
                         <div class="m-auto">
                             <div class="card m-auto text-dark border-dark opacity-50"
                                  style="width: 160px; height: 160px;">
@@ -141,7 +141,7 @@
                             <div id="divSubirFoto" class="d-flex align-items-center"
                                  style="max-width: 60px; max-height: 60px; min-width: 60px; min-height: 60px; padding: .7rem;">
                                 <button class="btn btn-primary p-0 w-100 h-100 rounded-circle"
-                                        onclick="fnSubirFoto()">
+                                        onclick="fnSubirFotos()">
                                     <i class="fa-solid fa-plus fs-5"></i>
                                 </button>
                             </div>
@@ -155,7 +155,7 @@
                             data-bs-dismiss="modal">
                         Cancelar
                     </button>
-                    <button type="button" onclick="fnGuardarFotosEnServidor()" class="btn btn-success w-100">Guardar</button>
+                    <button type="button" onclick="fnGuardarFotos()" class="btn btn-success w-100">Guardar</button>
                 </div>
             </div>
         </div>
