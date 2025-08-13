@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Fotografia.Models;
+using Fotografia.ViewModels;
 using System;
 using Fotografia.Data;
 using Microsoft.IdentityModel.Tokens;
@@ -22,7 +23,7 @@ namespace Fotografia.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AgregarFoto([FromBody] MoAgregarFoto moAgregarFoto)
+        public async Task<IActionResult> AgregarFoto([FromBody] VmAgregarFoto moAgregarFoto)
         {
             if (string.IsNullOrEmpty(moAgregarFoto.SMatricula) || string.IsNullOrEmpty(moAgregarFoto.BFotoBase64))
             {
@@ -55,12 +56,6 @@ namespace Fotografia.Controllers
                 // Aquí podrías loggear el error
                 return Json(new { success = false, message = ex.Message });
             }
-        }
-
-        public class MoAgregarFoto
-        {
-            public string? SMatricula { get; set; }
-            public string? BFotoBase64 { get; set; }
         }
 
         [HttpPost]
