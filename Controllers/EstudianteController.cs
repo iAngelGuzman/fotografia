@@ -22,20 +22,20 @@ namespace Fotografia.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> InsertarDesdeModal([FromBody] InsertFotoRequest request)
+        public async Task<IActionResult> AgregarFoto([FromBody] MoAgregarFoto moAgregarFoto)
         {
-            if (string.IsNullOrEmpty(request.SMatricula) || string.IsNullOrEmpty(request.BFotoBase64))
+            if (string.IsNullOrEmpty(moAgregarFoto.SMatricula) || string.IsNullOrEmpty(moAgregarFoto.BFotoBase64))
             {
                 return Json(new { success = false, message = "Datos incompletos." });
             }
 
             try
             {
-                byte[] fotoBytes = Convert.FromBase64String(request.BFotoBase64);
+                byte[] fotoBytes = Convert.FromBase64String(moAgregarFoto.BFotoBase64);
 
                 var moFoto = new MoFoto
                 {
-                    SMatricula = request.SMatricula,
+                    SMatricula = moAgregarFoto.SMatricula,
                     BFoto = fotoBytes,
                     DFAlta = DateTime.Now,
                     SUsrResp = User.Identity?.Name ?? "Anónimo"
@@ -57,7 +57,7 @@ namespace Fotografia.Controllers
             }
         }
 
-        public class InsertFotoRequest
+        public class MoAgregarFoto
         {
             public string? SMatricula { get; set; }
             public string? BFotoBase64 { get; set; }
