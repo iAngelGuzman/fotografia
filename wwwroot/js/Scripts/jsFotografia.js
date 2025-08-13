@@ -41,7 +41,7 @@ function fnActualizarInfo() {
 }
 
 // --- Subir foto ---
-function fnSubirFoto() {
+function fnSubirFotosAContenedor() {
     document.getElementById('txtImagenes').click();
 }
 
@@ -55,7 +55,7 @@ async function fnSubirFotoSeleccionada(txtImagenes) {
     txtImagenes.value = '';
 }
 
-async function fnGuardarFotosEnServidor() {
+async function fnGuardarFotos() {
     const lsBotones = fnObtenerImagenes();
     if (lsBotones.length === 0) {
         alert('No hay fotos para guardar.');
