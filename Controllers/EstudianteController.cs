@@ -23,21 +23,21 @@ namespace Fotografia.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> AgregarFoto([FromBody] VmAgregarFoto moAgregarFoto)
+        public async Task<IActionResult> AgregarFoto([FromBody] VmAgregarFoto vmAgregarFoto)
         {
-            if (string.IsNullOrEmpty(moAgregarFoto.SMatricula) || string.IsNullOrEmpty(moAgregarFoto.BFotoBase64))
+            if (string.IsNullOrEmpty(vmAgregarFoto.SMatricula) || string.IsNullOrEmpty(vmAgregarFoto.BFotoBase64))
             {
                 return Json(new { success = false, message = "Datos incompletos." });
             }
 
             try
             {
-                byte[] fotoBytes = Convert.FromBase64String(moAgregarFoto.BFotoBase64);
+                byte[] bFoto = Convert.FromBase64String(moAgregarFoto.BFotoBase64);
 
                 var moFoto = new MoFoto
                 {
-                    SMatricula = moAgregarFoto.SMatricula,
-                    BFoto = fotoBytes,
+                    SMatricula = vmAgregarFoto.SMatricula,
+                    BFoto = bFoto,
                     DFAlta = DateTime.Now,
                     SUsrResp = User.Identity?.Name ?? "Anónimo"
                 };
