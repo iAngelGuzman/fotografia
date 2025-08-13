@@ -10,8 +10,8 @@
         lengthChange: true,
         dom: 'rtip',
         lengthMenu: [
-            [1, 5], /* Valores a mostrar */
-            [1, 5], /* Etiquetas a mostrar */
+            [1, 4], /* Valores a mostrar */
+            [1, 4], /* Etiquetas a mostrar */
         ],
         language: {
             url: '//cdn.datatables.net/plug-ins/1.13.6/i18n/es-ES.json',
@@ -40,22 +40,21 @@ function fnMostrarAgregarImagen() {
 let idFotoEditar = null;
 
 function fnMostrarEditarImagen(foto) {
-    console.log(foto.SFoto)
     $('#imgEditarPrincipal').attr('src', foto.SFoto);
     $('#txtMatriculaEditar').val(foto.SMatricula);
     idFotoEditar = foto.NId;
     $('#mdlEditar').modal('show');
 }
 
-function fnMostrarVerImagen(matricula, fotoBase64) {
-    if (!matricula) {
-        matricula = 'Sin matrícula';
+function fnMostrarVerImagen(sMatricula, sFoto) {
+    if (!sMatricula) {
+        sMatricula = 'Sin matrícula';
     }
     // Asigna la matrícula y la imagen
-    document.getElementById('spMatriculaVerFoto').textContent = matricula;
-    document.getElementById('imgVerFoto').src = fotoBase64;
+    document.getElementById('spMatriculaVerFoto').textContent = sMatricula;
+    document.getElementById('imgVerFoto').src = sFoto;
 
     // Muestra el modal
-    var modal = new bootstrap.Modal(document.getElementById('mdlVerFoto'));
-    modal.show();
+    var mdlVerFoto = new bootstrap.Modal(document.getElementById('mdlVerFoto'));
+    mdlVerFoto.show();
 }
