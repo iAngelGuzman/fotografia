@@ -1,6 +1,6 @@
 // --- Variables globales ---
-let currentImageIndex = -1;
-let cerrarModalPendiente = false;
+let nIndexImagenActual = -1;
+let bCerrarModalPendiente = false;
 
 // --- Utilidades ---
 function fnQuitarExtension(nombre) {
@@ -12,15 +12,15 @@ function fnObtenerImagenes() {
 }
 
 function fnSeleccionarImgDefault() {
-    const buttons = fnObtenerImagenes();
-    if (buttons.length === 0) {
-        currentImageIndex = -1;
+    const lsImagenes = fnObtenerImagenes();
+    if (lsImagenes.length === 0) {
+        nIndexImagenActual = -1;
         document.getElementById('imgPrincipal').src = "";
         document.getElementById('spFotoPrincipal').textContent = "MATRICULA";
         return;
     }
-    if (currentImageIndex === -1 || currentImageIndex >= buttons.length) {
-        fnMostrarPrincipal(buttons[0]);
+    if (nIndexImagenActual === -1 || nIndexImagenActual >= lsImagenes.length) {
+        fnMostrarPrincipal(lsImagenes[0]);
     }
 }
 
@@ -28,8 +28,8 @@ function fnActualizarInfo() {
     const divContenedorFotos = document.getElementById('divContenedorFotos');
     const modalFooter = document.getElementById('mdlAgregar').querySelector('.modal-footer');
     const divInfo = document.getElementById('divInfo');
-    const buttons = fnObtenerImagenes();
-    if (buttons.length === 0) {
+    const lsImagenes = fnObtenerImagenes();
+    if (lsImagenes.length === 0) {
         divInfo.classList.remove('d-none');
         divContenedorFotos.classList.add('d-none');
         modalFooter.classList.add('d-none');
@@ -46,25 +46,25 @@ function fnSubirFoto() {
 }
 
 async function fnSubirFotoSeleccionada(txtImagenes) {
-    const files = txtImagenes.files;
-    if (!files.length) return;
-    for (let i = 0; i < files.length; i++) {
-        const res = await fnVerificarDuplicado(files[i]);
+    const lsFiles = txtImagenes.files;
+    if (!lsFiles.length) return;
+    for (let i = 0; i < lsFiles.length; i++) {
+        const res = await fnVerificarDuplicado(lsFiles[i]);
         if (res === 'cancelar') break;
     }
     txtImagenes.value = '';
 }
 
 async function fnGuardarFotosEnServidor() {
-    const buttons = fnObtenerImagenes();
-    if (buttons.length === 0) {
+    const lsBotones = fnObtenerImagenes();
+    if (lsBotones.length === 0) {
         alert('No hay fotos para guardar.');
         return;
     }
 
     const token = document.querySelector('#formAgregarFotos input[name="__RequestVerificationToken"]').value;
 
-    const promesas = buttons.map(btn => {
+    const promesas = lsBotones.map(btn => {
         const img = btn.querySelector('img');
         if (!img) return Promise.resolve();
 
@@ -105,9 +105,9 @@ async function fnGuardarFotosEnServidor() {
 
 // --- Actualizar foto ---
 function fnActualizarFoto() {
-    const matricula = $('#txtMatriculaEditar').val();
+    const sMatricula = $('#txtMatriculaEditar').val();
     // Si necesitas enviar la imagen, puedes obtenerla desde la fuente base64 actual en imgEditarPrincipal
-    const fotoBase64 = $('#imgEditarPrincipal').attr('src').split(',')[1];
+    const bFoto = $('#imgEditarPrincipal').attr('src').split(',')[1];
 
     $.ajax({
         url: '/Estudiante/ActualizarFoto',  // Acción en el controlador que procesa la edición
@@ -115,8 +115,8 @@ function fnActualizarFoto() {
         contentType: 'application/json',
         data: JSON.stringify({
             NId: idFotoEditar,
-            SMatricula: matricula,
-            BFotoBase64: fotoBase64
+            SMatricula: sMatricula,
+            BFotoBase64: bFoto
         }),
         success: function (response) {
             if (response.success) {
@@ -136,7 +136,7 @@ function fnActualizarFoto() {
 
 // --- Imagen principal ---
 function fnActualizarIndex(btn) {
-    currentImageIndex = fnObtenerImagenes().indexOf(btn);
+    nIndexImagenActual = fnObtenerImagenes().indexOf(btn);
 }
 
 function fnMostrarPrincipal(btn) {
@@ -160,8 +160,8 @@ function fnBtnEliminarImg(btn) {
     btnClose.innerHTML = '<i class="fa-solid fa-xmark"></i>';
     btnClose.addEventListener('click', function (e) {
         e.stopPropagation();
-        const buttons = fnObtenerImagenes();
-        const idx = buttons.indexOf(btn);
+        const lsImagenes = fnObtenerImagenes();
+        const idx = lsImagenes.indexOf(btn);
         const wasActive = btn.classList.contains('active');
         btn.remove();
         fnActualizarInfo();
@@ -180,7 +180,7 @@ function fnBtnEliminarImg(btn) {
 }
 
 // --- Crear botón imagen ---
-function crearBotonImagen(file, src) {
+function fnCrearBotonImagen(file, src) {
     const divFotos = document.getElementById('divFotos');
     const divSubirFoto = document.getElementById('divSubirFoto');
     const btn = document.createElement('button');
@@ -237,11 +237,11 @@ function fnRecorrerArchivos(item, done) {
 // --- Control de duplicados ---
 async function fnVerificarDuplicado(file) {
     const divFotos = document.getElementById('divFotos');
-    const existente = Array.from(divFotos.querySelectorAll('.btnImg img'))
+    const bExistente = Array.from(divFotos.querySelectorAll('.btnImg img'))
         .find(img => img.alt === file.name);
 
     let nuevaSrc = '';
-    if (existente) {
+    if (bExistente) {
         nuevaSrc = await new Promise(resolve => {
             const reader = new FileReader();
             reader.onload = e => resolve(e.target.result);
@@ -249,20 +249,20 @@ async function fnVerificarDuplicado(file) {
         });
         const decision = await fnPreguntarDuplicado(
             file.name,
-            existente.src,
+            bExistente.src,
             nuevaSrc
         );
         if (decision === 'cancelar') return 'cancelar';
         if (decision === 'omitir') return 'omitido';
         if (decision === 'reemplazar') {
-            existente.closest('.btnImg').remove();
+            bExistente.closest('.btnImg').remove();
         }
     }
 
     return new Promise(resolve => {
         const reader = new FileReader();
         reader.onload = function (evt) {
-            crearBotonImagen(file, evt.target.result);
+            fnCrearBotonImagen(file, evt.target.result);
             resolve('agregado');
         };
         reader.readAsDataURL(file);
@@ -287,9 +287,9 @@ function fnPreguntarDuplicado(nombre, anteriorSrc, nuevaSrc) {
 // --- Navegación con teclado ---
 function fnObtenerImagenesPorFila() {
     const divFotos = document.getElementById('divFotos');
-    const buttons = fnObtenerImagenes();
-    if (buttons.length < 2) return 1;
-    const firstBtn = buttons[0];
+    const lsImagenes = fnObtenerImagenes();
+    if (lsImagenes.length < 2) return 1;
+    const firstBtn = lsImagenes[0];
     const btnWidth = firstBtn.offsetWidth + parseInt(getComputedStyle(firstBtn).marginRight || 0);
     const divWidth = divFotos.offsetWidth;
     return Math.max(1, Math.floor(divWidth / btnWidth));
@@ -298,39 +298,39 @@ function fnObtenerImagenesPorFila() {
 document.addEventListener('keydown', function (e) {
     const modal = document.getElementById('mdlAgregar');
     if (!modal.classList.contains('show')) return;
-    const buttons = fnObtenerImagenes();
-    if (!buttons.length) return;
+    const lsImagenes = fnObtenerImagenes();
+    if (!lsImagenes.length) return;
     let imagesPerRow = fnObtenerImagenesPorFila();
 
-    if (e.key === 'ArrowRight' && currentImageIndex < buttons.length - 1) currentImageIndex++;
-    else if (e.key === 'ArrowLeft' && currentImageIndex > 0) currentImageIndex--;
-    else if (e.key === 'ArrowDown' && currentImageIndex + imagesPerRow < buttons.length) currentImageIndex += imagesPerRow;
-    else if (e.key === 'ArrowUp' && currentImageIndex - imagesPerRow >= 0) currentImageIndex -= imagesPerRow;
+    if (e.key === 'ArrowRight' && nIndexImagenActual < lsImagenes.length - 1) nIndexImagenActual++;
+    else if (e.key === 'ArrowLeft' && nIndexImagenActual > 0) nIndexImagenActual--;
+    else if (e.key === 'ArrowDown' && nIndexImagenActual + imagesPerRow < lsImagenes.length) nIndexImagenActual += imagesPerRow;
+    else if (e.key === 'ArrowUp' && nIndexImagenActual - imagesPerRow >= 0) nIndexImagenActual -= imagesPerRow;
     else return;
-    buttons[currentImageIndex].focus();
-    fnMostrarPrincipal(buttons[currentImageIndex]);
+    lsImagenes[nIndexImagenActual].focus();
+    fnMostrarPrincipal(lsImagenes[nIndexImagenActual]);
 });
 
 // --- Modal de confirmación de cierre ---
 document.getElementById('mdlAgregar').addEventListener('hide.bs.modal', function (e) {
-    const buttons = fnObtenerImagenes();
-    if (buttons.length > 0 && !cerrarModalPendiente) {
+    const lsImagenes = fnObtenerImagenes();
+    if (lsImagenes.length > 0 && !bCerrarModalPendiente) {
         e.preventDefault();
         const confirmModal = new bootstrap.Modal(document.getElementById('mdlConfirmarCerrar'));
         confirmModal.show();
         document.getElementById('btnConfirmarCerrar').onclick = function () {
-            cerrarModalPendiente = true;
+            bCerrarModalPendiente = true;
             confirmModal.hide();
             const modal = bootstrap.Modal.getInstance(document.getElementById('mdlAgregar'));
             modal.hide();
-            setTimeout(() => { cerrarModalPendiente = false; }, 500);
+            setTimeout(() => { bCerrarModalPendiente = false; }, 500);
         };
     }
 });
 
 document.getElementById('mdlAgregar').addEventListener('hidden.bs.modal', function () {
     fnObtenerImagenes().forEach(btn => btn.remove());
-    currentImageIndex = -1;
+    nIndexImagenActual = -1;
     document.getElementById('imgPrincipal').src = "https://picsum.photos/id/10/500/300";
     document.getElementById('spFotoPrincipal').textContent = "MATRICULA";
     fnActualizarInfo();
@@ -399,10 +399,10 @@ document.addEventListener('DOMContentLoaded', function () {
         function fnGuardarNombre() {
             const nuevoNombre = fnQuitarExtension(input.value.trim()) || 'MATRICULA';
             // Validar duplicado (ignorando la imagen principal actual)
-            const buttons = fnObtenerImagenes();
+            const lsImagenes = fnObtenerImagenes();
             const nombreConExtension = nuevoNombre + '.jpg';
-            const existe = buttons.some((btn, idx) => {
-                if (idx === currentImageIndex) return false;
+            const existe = lsImagenes.some((btn, idx) => {
+                if (idx === nIndexImagenActual) return false;
                 const imgMini = btn.querySelector('img');
                 return imgMini && imgMini.alt === nombreConExtension;
             });
@@ -420,8 +420,8 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('imgPrincipal').alt = nuevoNombre;
 
             // Actualiza el alt de la miniatura activa
-            if (currentImageIndex >= 0 && buttons[currentImageIndex]) {
-                const imgMini = buttons[currentImageIndex].querySelector('img');
+            if (nIndexImagenActual >= 0 && lsImagenes[nIndexImagenActual]) {
+                const imgMini = lsImagenes[nIndexImagenActual].querySelector('img');
                 if (imgMini) imgMini.alt = nombreConExtension;
             }
 
