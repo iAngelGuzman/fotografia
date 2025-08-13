@@ -36,7 +36,6 @@
         <table id="tblEstudiante" class="table table-bordered table-striped text-center">
             <thead class="text-center">
                 <tr>
-                    <th class="text-center border-0" scope="col">Id</th>
                     <th class="text-center border-0" scope="col">Matrícula</th>
                     <th class="text-center border-0" scope="col">Última modificación</th>
                     <th class="text-center border-0" scope="col">Responsable</th>
@@ -47,7 +46,6 @@
                 @foreach (var estudiante in Model)
                 {
                     <tr>
-                        <td>@estudiante.NId</td>
                         <td>@estudiante.SMatricula</td>
                         <td>@estudiante.DFUltModif</td>
                         <td>@estudiante.SUsrResp</td>
