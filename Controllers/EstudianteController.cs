@@ -32,7 +32,7 @@ namespace Fotografia.Controllers
 
             try
             {
-                byte[] bFoto = Convert.FromBase64String(moAgregarFoto.BFotoBase64);
+                byte[] bFoto = Convert.FromBase64String(vmAgregarFoto.BFotoBase64);
 
                 var moFoto = new MoFoto
                 {
