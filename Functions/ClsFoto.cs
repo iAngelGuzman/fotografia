@@ -15,7 +15,7 @@ namespace Fotografia.Functions
             _daFoto = daFoto;
         }
 
-        public async Task<(bool Success, string Message)> AgregarFoto(VmAgregarFoto vmAgregarFoto, string usuario)
+        public async Task<(bool Success, string Message)> AgregarFoto(VmAgregarFoto vmAgregarFoto, string sUsuario)
         {
             if (string.IsNullOrEmpty(vmAgregarFoto.SMatricula) || string.IsNullOrEmpty(vmAgregarFoto.BFotoBase64))
             {
@@ -31,7 +31,7 @@ namespace Fotografia.Functions
                     SMatricula = vmAgregarFoto.SMatricula,
                     BFoto = bFoto,
                     DFAlta = DateTime.Now,
-                    SUsrResp = string.IsNullOrEmpty(usuario) ? "Anónimo" : usuario
+                    SUsrResp = string.IsNullOrEmpty(sUsuario) ? "Anónimo" : sUsuario
                 };
 
                 if (_daFoto == null)
