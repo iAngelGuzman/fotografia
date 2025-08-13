@@ -17,8 +17,8 @@ namespace Fotografia.Controllers
 
         public IActionResult Index()
         {
-            var estudiantes = _daFoto.ObtenerFotos() ?? new List<MoFoto>();
-            return View(estudiantes);
+            var lsEstudiantes = _daFoto.ObtenerFotos() ?? new List<MoFoto>();
+            return View(lsEstudiantes);
         }
 
         [HttpPost]
@@ -33,7 +33,7 @@ namespace Fotografia.Controllers
             {
                 byte[] fotoBytes = Convert.FromBase64String(request.BFotoBase64);
 
-                var nuevaFoto = new MoFoto
+                var moFoto = new MoFoto
                 {
                     SMatricula = request.SMatricula,
                     BFoto = fotoBytes,
@@ -46,7 +46,7 @@ namespace Fotografia.Controllers
                     return Json(new { success = false, message = "El servicio de datos no está disponible." });
                 }
 
-                await _daFoto.InsertarFoto(nuevaFoto);
+                await _daFoto.InsertarFoto(moFoto);
 
                 return Json(new { success = true });
             }
