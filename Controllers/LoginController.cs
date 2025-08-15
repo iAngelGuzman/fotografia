@@ -18,19 +18,16 @@ public class LoginController : Controller
         if (ModelState.IsValid)
         {
             // Si el modelo es válido, redirige al siguiente paso
-            return RedirectToAction("IniciarSesion");
+            if (model.SUsuario != null && model.SUsuario.Equals("admin"))
+            {
+                return RedirectToAction("Index", "Admin");
+            }
+            return RedirectToAction("Index", "Inicio");
         }
         else
         {
             // Si el modelo no es válido, vuelve a mostrar la vista con los errores
             return View(model);
         }
-    }
-
-    // Acción para redirigir a otra parte del sistema
-    public IActionResult IniciarSesion()
-    {
-        // Aquí iría la lógica de autenticación
-        return RedirectToAction("Index", "Inicio");
     }
 }

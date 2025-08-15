@@ -1,4 +1,5 @@
 using Fotografia.Data;
+using Fotografia.Functions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -6,7 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<DaFoto>();
-
+builder.Services.AddScoped<ClsFoto>();
 
 var app = builder.Build();
 

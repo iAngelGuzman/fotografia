@@ -31,7 +31,7 @@ namespace Fotografia.Functions
                     SMatricula = vmAgregarFoto.SMatricula,
                     BFoto = bFoto,
                     DFAlta = DateTime.Now,
-                    SUsrResp = string.IsNullOrEmpty(sUsuario) ? "Anónimo" : sUsuario
+                    SUsrResp = sUsuario
                 };
 
                 if (_daFoto == null)

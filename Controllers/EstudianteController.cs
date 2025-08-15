@@ -2,6 +2,7 @@
 using Fotografia.Models;
 using Fotografia.ViewModels;
 using System;
+using Fotografia.Functions;
 using Fotografia.Data;
 using Microsoft.IdentityModel.Tokens;
 
@@ -10,10 +11,12 @@ namespace Fotografia.Controllers
     public class EstudianteController : Controller
     {
         private readonly DaFoto _daFoto;
+        private readonly ClsFoto _clsFoto;
 
-        public EstudianteController(DaFoto daFoto)
+        public EstudianteController(DaFoto daFoto, ClsFoto clsFoto)
         {
             _daFoto = daFoto ?? throw new ArgumentNullException(nameof(daFoto));
+            _clsFoto = clsFoto ?? throw new ArgumentNullException(nameof(clsFoto));
         }
 
         public IActionResult Index()
@@ -28,10 +31,10 @@ namespace Fotografia.Controllers
         /// <param name="vmAgregarFoto">ViewModel-Objeto que contiene la matrícula y la imagen en formato Base64</param>
         /// <param name="sUsuario">  Nombre del usuario responsable de la acción. Si es nulo o vacío, se asignará "Anónimo"</param>
         /// <returns></returns>
-        [HttpPost("Agregar")]
+        [HttpPost]
         public async Task<IActionResult> AgregarFoto([FromBody] VmAgregarFoto vmAgregarFoto)
         {
-            var resultado = await _clsFoto.AgregarFoto(vmAgregarFoto, User.Identity?.Name);
+            var resultado = await _clsFoto.AgregarFoto(vmAgregarFoto, User.Identity?.Name ?? "Anónimo");
         
             if (!resultado.Success)
                 return BadRequest(new { success = false, message = resultado.Message });

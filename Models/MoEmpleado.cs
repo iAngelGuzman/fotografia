@@ -6,13 +6,19 @@ namespace Fotografia.Models
     {
         public int NId { get; set; }
         [Required]
-        public string? SNombre { get; set; }
+        public string? SUsuario { get; set; }
         [Required]
-        public string? SRol { get; set; }
+        public string? SDep { get; set; }
         [Required]
-        public string? SPermisos { get; set; }
+        public int NNoPerson { get; set; }
         [Required]
-        public DateTime DtFecCre { get; set; }
-        public DateTime DtUltAct { get; set; }
+        public char? CPermisos { get; set; }
+        [Required]
+        public bool BAdmin { get; set; }
+        [Required]
+        public DateTime DFAlta { get; set; }
+        public DateTime DFUltModif { get; set; }
+        public DateTime DFBaja { get; set; }
+        public char? CIndActivo { get; set; }
     }
 }

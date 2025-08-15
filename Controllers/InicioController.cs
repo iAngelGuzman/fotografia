@@ -15,10 +15,7 @@ public class InicioController : Controller
 
     public IActionResult Index()
     {
-        var model = new List<MoFoto>
-        {
-        };
-        return View(model);
+        return View();
     }
 
     public IActionResult Privacy()

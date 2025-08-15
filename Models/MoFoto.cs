@@ -12,7 +12,6 @@ namespace Fotografia.Models
         public DateTime? DFBaja { get; set; }
         public string? CIndActivo { get; set; }
         public string? SUsrResp { get; set; }
-
         public string? SFoto
         {
             get

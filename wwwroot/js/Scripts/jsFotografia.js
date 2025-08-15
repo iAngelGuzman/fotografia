@@ -1,5 +1,6 @@
 // --- Variables globales ---
 let nIndexImagenActual = -1;
+let liDuplicados = [];
 let bCerrarModalPendiente = false;
 
 // --- Utilidades ---
@@ -46,10 +47,10 @@ function fnSubirFotosAContenedor() {
 }
 
 async function fnSubirFotoSeleccionada(txtImagenes) {
-    const lsFiles = txtImagenes.files;
-    if (!lsFiles.length) return;
-    for (let i = 0; i < lsFiles.length; i++) {
-        const res = await fnVerificarDuplicado(lsFiles[i]);
+    const liFiles = txtImagenes.files;
+    if (!liFiles.length) return;
+    for (let i = 0; i < liFiles.length; i++) {
+        const res = await fnVerificarDuplicado(liFiles[i]);
         if (res === 'cancelar') break;
     }
     txtImagenes.value = '';
@@ -155,7 +156,7 @@ function fnBtnEliminarImg(btn) {
     btnClose.type = 'button';
     btnClose.className = 'btn btn-sm btn-danger position-absolute rounded-circle d-flex align-items-center justify-content-center';
     Object.assign(btnClose.style, {
-        width: '25px', height: '25px', zIndex: '10', top: '-9%', left: '64%', boxShadow: '0px 1px 2px black'
+        width: '1.5rem', height: '1.5rem', zIndex: '10', top: '-15%', left: '64%', boxShadow: '0px 1px 2px black'
     });
     btnClose.innerHTML = '<i class="fa-solid fa-xmark"></i>';
     btnClose.addEventListener('click', function (e) {
@@ -187,7 +188,7 @@ function fnCrearBotonImagen(file, src) {
     btn.type = 'button';
     btn.className = 'btn btnImg rounded-3 ratio ratio-1x1 position-relative p-0 b-0';
     Object.assign(btn.style, {
-        minWidth: '60px', maxWidth: '60px', minHeight: '60px', maxHeight: '60px'
+        minWidth: '3.2rem', maxWidth: '3.2rem', minHeight: '3.2rem', maxHeight: '3.2rem'
     });
     btn.addEventListener('click', function () { fnMostrarPrincipal(btn); });
 
@@ -240,18 +241,21 @@ async function fnVerificarDuplicado(file) {
     const bExistente = Array.from(divFotos.querySelectorAll('.btnImg img'))
         .find(img => img.alt === file.name);
 
-    let nuevaSrc = '';
     if (bExistente) {
-        nuevaSrc = await new Promise(resolve => {
+        // Leer la imagen nueva como Base64
+        const nuevaSrc = await new Promise(resolve => {
             const reader = new FileReader();
             reader.onload = e => resolve(e.target.result);
             reader.readAsDataURL(file);
         });
+
+        // Preguntar al usuario
         const decision = await fnPreguntarDuplicado(
             file.name,
             bExistente.src,
             nuevaSrc
         );
+
         if (decision === 'cancelar') return 'cancelar';
         if (decision === 'omitir') return 'omitido';
         if (decision === 'reemplazar') {
@@ -259,6 +263,7 @@ async function fnVerificarDuplicado(file) {
         }
     }
 
+    // Si no existía o si reemplazó, agregar la nueva imagen
     return new Promise(resolve => {
         const reader = new FileReader();
         reader.onload = function (evt) {
@@ -269,20 +274,53 @@ async function fnVerificarDuplicado(file) {
     });
 }
 
+
 // --- Modal de duplicado ---
 function fnPreguntarDuplicado(nombre, anteriorSrc, nuevaSrc) {
     return new Promise(resolve => {
-        document.getElementById('spNombreImagenDuplicada').textContent = `"${fnQuitarExtension(nombre)}"`;
-        document.getElementById('imgDuplicadaActual').src = anteriorSrc || '';
-        document.getElementById('imgDuplicadaNueva').src = nuevaSrc || '';
-        const modal = new bootstrap.Modal(document.getElementById('mdlImagenDuplicada'));
+        const spNombre = document.getElementById('spNombreImagenDuplicada');
+        const imgActual = document.getElementById('imgDuplicadaActual');
+        const imgNueva = document.getElementById('imgDuplicadaNueva');
+        const modalEl = document.getElementById('mdlImagenDuplicada');
+
+        spNombre.textContent = `"${fnQuitarExtension(nombre)}"`;
+        imgActual.src = anteriorSrc || '';
+        imgNueva.src = nuevaSrc || '';
+
+        const modal = new bootstrap.Modal(modalEl);
         modal.show();
 
-        document.getElementById('btnReemplazar').onclick = () => { modal.hide(); resolve('reemplazar'); };
-        document.getElementById('btnOmitir').onclick = () => { modal.hide(); resolve('omitir'); };
-        document.getElementById('btnCancelarCarga').onclick = () => { modal.hide(); resolve('cancelar'); };
+        const btnReemplazar = document.getElementById('btnReemplazar');
+        const btnOmitir = document.getElementById('btnOmitir');
+        const btnCancelar = document.getElementById('btnCancelarCarga');
+
+        // eliminar handlers previos
+        btnReemplazar.replaceWith(btnReemplazar.cloneNode(true));
+        btnOmitir.replaceWith(btnOmitir.cloneNode(true));
+        btnCancelar.replaceWith(btnCancelar.cloneNode(true));
+
+        const btnR = document.getElementById('btnReemplazar');
+        const btnO = document.getElementById('btnOmitir');
+        const btnC = document.getElementById('btnCancelarCarga');
+
+        btnR.onclick = () => {
+            document.getElementById('txtImagenes').focus(); // o cualquier otro botón fuera del modal
+            modal.hide();
+            resolve('reemplazar');
+        };
+        btnO.onclick = () => {
+            document.getElementById('txtImagenes').focus();
+            modal.hide();
+            resolve('omitir');
+        };
+        btnC.onclick = () => {
+            document.getElementById('txtImagenes').focus();
+            modal.hide();
+            resolve('cancelar');
+        };
     });
 }
+
 
 // --- Navegación con teclado ---
 function fnObtenerImagenesPorFila() {

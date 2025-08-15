@@ -20,4 +20,9 @@ public class AdminController : Controller
         };
         return View(model);
     }
+
+    public IActionResult AgregarEmpleado()
+    {
+        return View();
+    }
 }

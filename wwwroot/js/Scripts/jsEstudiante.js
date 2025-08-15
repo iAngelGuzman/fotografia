@@ -3,7 +3,7 @@
     var tblEstudiante = new DataTable('#tblEstudiante', {
         pageLength: 5,
         responsive: true,
-        ordering: false,
+        ordering: true,
         paging: true,
         searching: true,
         destroy: true,
