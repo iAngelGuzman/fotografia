@@ -8,3 +8,8 @@
     });
 
 });
+
+// This script initializes a DataTable on the element with ID 'tblEmpleados'.
+function fnMostrarAgregarEmpleado() {
+    $("#mdlAgregarEmpleado").modal("show");
+}

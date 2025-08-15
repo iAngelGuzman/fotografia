@@ -49,12 +49,25 @@ function fnSubirFotosAContenedor() {
 async function fnSubirFotoSeleccionada(txtImagenes) {
     const liFiles = txtImagenes.files;
     if (!liFiles.length) return;
+
     for (let i = 0; i < liFiles.length; i++) {
         const res = await fnVerificarDuplicado(liFiles[i]);
-        if (res === 'cancelar') break;
+
+        if (res === 'cancelar') {
+            // Cancelar toda la carga
+            break;
+        } else if (res === 'omitido') {
+            // Saltar este archivo pero continuar con los demás
+            continue;
+        } else if (res === 'reemplazar' || res === 'agregado') {
+            // Ya se agregó la foto en fnVerificarDuplicado
+            continue;
+        }
     }
+
     txtImagenes.value = '';
 }
+
 
 async function fnGuardarFotos() {
     const liBotones = fnObtenerFotografias();
@@ -98,7 +111,6 @@ async function fnGuardarFotos() {
         alert('Fotos guardadas correctamente.');
         const mdlAgregar = bootstrap.Modal.getInstance(document.getElementById('mdlAgregar'));
         mdlAgregar.hide();
-        location.reload();
     } catch (err) {
         alert(err.message);
     }
@@ -238,42 +250,35 @@ function fnRecorrerArchivos(item, done) {
 // --- Control de duplicados ---
 async function fnVerificarDuplicado(file) {
     const divFotos = document.getElementById('divFotos');
-    const bExistente = Array.from(divFotos.querySelectorAll('.btnImg img'))
+    const existente = Array.from(divFotos.querySelectorAll('.btnImg img'))
         .find(img => img.alt === file.name);
 
-    if (bExistente) {
-        // Leer la imagen nueva como Base64
-        const nuevaSrc = await new Promise(resolve => {
-            const reader = new FileReader();
-            reader.onload = e => resolve(e.target.result);
-            reader.readAsDataURL(file);
-        });
+    // Leer la nueva imagen como Base64
+    const nuevaSrc = await new Promise(resolve => {
+        const reader = new FileReader();
+        reader.onload = e => resolve(e.target.result);
+        reader.readAsDataURL(file);
+    });
 
-        // Preguntar al usuario
-        const decision = await fnPreguntarDuplicado(
-            file.name,
-            bExistente.src,
-            nuevaSrc
-        );
+    let decision = 'agregado'; // valor por defecto
+
+    if (existente) {
+        decision = await fnPreguntarDuplicado(file.name, existente.src, nuevaSrc);
 
         if (decision === 'cancelar') return 'cancelar';
         if (decision === 'omitir') return 'omitido';
         if (decision === 'reemplazar') {
-            bExistente.closest('.btnImg').remove();
+            existente.closest('.btnImg').remove();
         }
     }
 
     // Si no existía o si reemplazó, agregar la nueva imagen
-    return new Promise(resolve => {
-        const reader = new FileReader();
-        reader.onload = function (evt) {
-            fnCrearBotonImagen(file, evt.target.result);
-            resolve('agregado');
-        };
-        reader.readAsDataURL(file);
-    });
-}
+    if (!existente || decision === 'reemplazar') {
+        fnCrearBotonImagen(file, nuevaSrc);
+    }
 
+    return 'agregado';
+}
 
 // --- Modal de duplicado ---
 function fnPreguntarDuplicado(nombre, anteriorSrc, nuevaSrc) {
@@ -287,14 +292,14 @@ function fnPreguntarDuplicado(nombre, anteriorSrc, nuevaSrc) {
         imgActual.src = anteriorSrc || '';
         imgNueva.src = nuevaSrc || '';
 
-        const modal = new bootstrap.Modal(modalEl);
+        const modal = new bootstrap.Modal(modalEl, { backdrop: false });
         modal.show();
 
         const btnReemplazar = document.getElementById('btnReemplazar');
         const btnOmitir = document.getElementById('btnOmitir');
         const btnCancelar = document.getElementById('btnCancelarCarga');
 
-        // eliminar handlers previos
+        // Limpiar listeners previos
         btnReemplazar.replaceWith(btnReemplazar.cloneNode(true));
         btnOmitir.replaceWith(btnOmitir.cloneNode(true));
         btnCancelar.replaceWith(btnCancelar.cloneNode(true));
@@ -303,24 +308,21 @@ function fnPreguntarDuplicado(nombre, anteriorSrc, nuevaSrc) {
         const btnO = document.getElementById('btnOmitir');
         const btnC = document.getElementById('btnCancelarCarga');
 
-        btnR.onclick = () => {
-            document.getElementById('txtImagenes').focus(); // o cualquier otro botón fuera del modal
-            modal.hide();
+        btnR.addEventListener('click', () => {
+            setTimeout(() => modal.hide(), 50); // deja que se resuelvan eventos internos
             resolve('reemplazar');
-        };
-        btnO.onclick = () => {
-            document.getElementById('txtImagenes').focus();
-            modal.hide();
+        });
+        btnO.addEventListener('click', () => {
+            setTimeout(() => modal.hide(), 50);
             resolve('omitir');
-        };
-        btnC.onclick = () => {
-            document.getElementById('txtImagenes').focus();
-            modal.hide();
+        });
+        btnC.addEventListener('click', () => {
+            setTimeout(() => modal.hide(), 50);
             resolve('cancelar');
-        };
+        });
+
     });
 }
-
 
 // --- Navegación con teclado ---
 function fnObtenerImagenesPorFila() {

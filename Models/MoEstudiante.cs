@@ -4,12 +4,7 @@ namespace Fotografia.Models
 {
     public class MoEstudiante
     {
-        public int Id { get; set; }
-        [Required]
-        public string Nombre { get; set; }
-        [Required]
-        public string Apellido { get; set; }
-        [Required]
-        public DateTime FechaNacimiento { get; set; }
+        public int NId { get; set; }
+        public required byte[] BFoto { get; set; }
     }
 }
